@@ -244,7 +244,6 @@ class EnshanAPI:
         return '; '.join(parts)
 
     @staticmethod
-    @staticmethod
     def _extract_formhash(html: str) -> Optional[str]:
         patterns = [
             r"member\.php\?mod=logging(?:&amp;|&)action=logout"
@@ -260,8 +259,6 @@ class EnshanAPI:
                 return match.group(1)
 
         return None
-
-    return None
 
     def _get_clearance_headers(self) -> Dict[str, str]:
         return {
