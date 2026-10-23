@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      ENSHAN_COOKIES: ${{ secrets.ENSHAN_COOKIES }}
       V2EX_COOKIES: ${{ secrets.V2EX_COOKIES }}
       BILIBILI_COOKIES: ${{ secrets.BILIBILI_COOKIES }}
       YAMIBO_USERNAME: ${{ secrets.YAMIBO_USERNAME }}
