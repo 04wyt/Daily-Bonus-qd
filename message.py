@@ -9,7 +9,7 @@ import sys
 import time
 
 from datetime import datetime, timedelta, timezone
-from checkin import bilibili, netease, pica, uma, v2ex, yamibo
+from checkin import bilibili, enshan, netease, pica, uma, v2ex, yamibo
 from telegram import Bot
 
 # info
@@ -50,6 +50,8 @@ if __name__ == "__main__":
     )
     content_lst = []
 
+    if os.environ.get("ENSHAN_COOKIES"):
+        content_lst.append(f"「恩山无线论坛」\\n{run_module(enshan.main)}")
     if os.environ.get("UMA_COOKIES"):
         content_lst.append(f"「賽馬娘每日簽到」\n{run_module(uma.main)}")
     if os.environ.get("YAMIBO_USERNAME") and os.environ.get("YAMIBO_PASSWORD"):
