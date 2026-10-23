@@ -244,24 +244,22 @@ class EnshanAPI:
         return '; '.join(parts)
 
     @staticmethod
-def _extract_formhash(html: str) -> Optional[str]:
-    patterns = [
-        # Discuz 退出登录链接
-        r"member\.php\?mod=logging(?:&amp;|&)action=logout"
-        r"(?:&amp;|&)formhash=([0-9a-fA-F]+)",
+    @staticmethod
+    def _extract_formhash(html: str) -> Optional[str]:
+        patterns = [
+            r"member\.php\?mod=logging(?:&amp;|&)action=logout"
+            r"(?:&amp;|&)formhash=([0-9a-fA-F]+)",
+            r"""<input\b[^>]*\bname=["']formhash["'][^>]*\bvalue=["']([0-9a-fA-F]+)["']""",
+            r"""<input\b[^>]*\bvalue=["']([0-9a-fA-F]+)["'][^>]*\bname=["']formhash["']""",
+            r"""formhash\s*[:=]\s*["']([0-9a-fA-F]+)["']""",
+        ]
 
-        # 隐藏表单字段
-        r"""<input\b[^>]*\bname=["']formhash["'][^>]*\bvalue=["']([0-9a-fA-F]+)["']""",
-        r"""<input\b[^>]*\bvalue=["']([0-9a-fA-F]+)["'][^>]*\bname=["']formhash["']""",
+        for pattern in patterns:
+            match = re.search(pattern, html, re.I)
+            if match:
+                return match.group(1)
 
-        # 页面脚本中的 formhash 变量
-        r"""formhash\s*[:=]\s*["']([0-9a-fA-F]+)["']""",
-    ]
-
-    for pattern in patterns:
-        match = re.search(pattern, html, re.I)
-        if match:
-            return match.group(1)
+        return None
 
     return None
 
