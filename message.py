@@ -29,6 +29,13 @@ FAILURE_MARKERS = (
     "签到可能失败",
     "签到结果未知",
     "无法获取 once 参数",
+    "今日未领取",
+    "No UMA_COOKIES set",
+    "No YAMIBO_USERNAME or YAMIBO_PASSWORD set",
+    "No V2EX_COOKIES set",
+    "No BILIBILI_COOKIES set",
+    "No PICA_USERNAME or PICA_PASSWORD set",
+    "No NETEASE_MUSIC_COOKIES set",
 )
 
 
