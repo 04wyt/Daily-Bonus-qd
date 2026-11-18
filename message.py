@@ -119,9 +119,12 @@ if __name__ == "__main__":
 
     # Send the report before returning a failing exit code, so Telegram still
     # receives the failure details when a check-in fails.
-    if TG_BOT_TOKEN:
-        if not send_message(content):
-            sys.exit(1)
+    if not TG_BOT_TOKEN or not TG_USER_ID:
+        print("Telegram 配置缺失：请检查 TG_BOT_TOKEN 和 TG_USER_ID。")
+        sys.exit(1)
+
+    if not send_message(content):
+        sys.exit(1)
 
     if failed_modules:
         sys.exit(1)
